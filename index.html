@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="hirakata_style.css">
+        <script src="jquery-3.6.0.js"></script>
+        </script>
+        <title>HiraKata Practice</title>
+    </head>
+    <body onload = "load()">
+        <img id = "main_title" src = "images/tako.png" alt = "TITLE" onclick = "openTab(event, 'front_page')">
+        <div class = "tab">
+            <button class = "tablinks" onclick = "openTab(event, 'hira_tab')">Hiragana</button>
+            <button class = "tablinks" onclick = "openTab(event, 'kata_tab')">Katakana</button>
+        </div>
+
+        <div id = "main_body">
+            <div id = "front_page">
+                Welcome to Kana Practice!
+                <br><br>
+                <div>This is your important first step in learning Japanese! You got this!</div>
+            </div>
+            <div id = "hira_tab" class = "tabcontent"></div>
+            <div id = "kata_tab" class = "tabcontent"></div>
+
+            <div id="myModal" class="modal">
+                <img src="gifs/tinytrans.gif" id = "kanji_gif" alt="gif">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <!-- <button id ="check" onclick = "show_correct()">CHECK</button>
+                    <p id = "counter">24 / 24</p> -->
+                    <!-- <button id = "left" class = "arrow left" onclick = "go_left()"></button>
+                    <button class = "arrow right" onclick = "go_right()"></button> -->
+                    <!--Drawing_Board-->
+                    <div id = "toolbar">
+                        <div id = "line_width_box">
+                            <p id = "line_width_label">PEN SIZE</p>
+                            <input id= "line_width" type="number" value="5">
+                        </div>
+                        <button class = "toolbar_button" onclick = "clear_drawing()">CLEAR</button>
+                        <button class = "toolbar_button" onclick = "undo()">UNDO</button>
+                        <span class = "display english" id = "display_english"></span>
+                        <button class = "toolbar_button sound" onclick = "sound()">&#128266;</button>
+                        <audio id = "audio" src=""></audio>
+                        <button id="close" onclick = "close_modal()">X</button>
+                    </div>
+                    <h2 id = "display_kanji"></h2>
+                    <!-- <p id = "display_underline"></p> -->
+                    <div id="board_space">
+                        <canvas id="drawing_board"></canvas>
+                    </div>
+                 </div>
+            </div>
+            
+            
+            <script src = "hirakata_script.js"></script>
+        </div>
+    <p id = "last_updated"></p>
+    </body>
+
+</html>
