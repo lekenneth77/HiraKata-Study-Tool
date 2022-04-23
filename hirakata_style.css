@@ -100,6 +100,26 @@ body {
     background-color: rgb(220, 220, 220);
   }
 
+  #hira_quiz {
+      background-color: rgb(214, 82, 82);
+      font-size: 2vw;
+      font-weight: bold;
+  }
+
+  #hira_quiz:hover {
+    background-color: rgb(207, 38, 38);
+  }
+
+  #kata_quiz {
+    background-color: rgb(112, 112, 218);
+    font-size: 2vw;
+    font-weight: bold;
+  }
+
+  #kata_quiz:hover {
+    background-color: rgb(69, 69, 249);
+      
+  }
 
   .kana_english {
       text-align: center;
@@ -124,6 +144,16 @@ body {
     font-size: 2vw;
     background-color: white;
     border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .letter_buttons:hover {
+    background-color: #ddd;
+  }
+
+  .letter_buttons:active {
+    background-color: rgb(220, 220, 220);
   }
 
   .switch_button {
@@ -146,13 +176,11 @@ body {
   .letter_hira {
       border: none;
       color: red;
-      cursor: auto;
   }
 
   .letter_kata {
     border: none;
     color: blue;
-    cursor: auto;
   }
 
   #main_body {
@@ -274,7 +302,7 @@ body {
     font-weight: bold;
     font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     color:white;
-    margin-left: 4vw;
+    margin-left: 3vw;
     margin-right: 1vw;
     font-size: 3vw;
     -webkit-touch-callout: none;
@@ -282,6 +310,7 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
 .sound {
     font-size: 2vw;
     margin-right: 28vw;
@@ -331,4 +360,65 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2vw;
     cursor: pointer;
 }
+
+#arrow_right {
+    position: absolute;
+    top: 34%;
+    cursor: pointer;
+    z-index: 2;
+    touch-action: manipulation;
+    right: -1%;
+    border-top: 6vw solid transparent;
+	border-left: 10vw solid darkslategray;
+	border-bottom: 6vw solid transparent;
+    border-right: transparent;
+    background: none;
+    display: none;
+}
+
+#counter {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: -5%;
+  left:0;
+  right:0;
+  text-align: center;
+  width: fit-content;
+  font-size: 5vw;
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-weight: bold;
+  background-color: white;
+  border-style: solid;
+  border-width: .2vw;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: none;
+}
+
+#quiz_time {
+  position: absolute;
+  color: red;
+  font-size: 8vw;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 19vw;
+  left: -18vw;
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-weight: bold;
+  display: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transform: rotate(-90deg);   
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  z-index: 2;
+}
+
 

@@ -5,6 +5,7 @@ const katakana_chars = ['ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 
 const english_chars = ['a', 'i', 'u', 'e', 'o', 'ka', 'ki', 'ku', 'ke', 'ko', 'sa', 'shi', 'su', 'se', 'so', 'ta', 'chi', 'tsu', 'te', 'to', 'na', 'ni', 'nu', 'ne', 'no', 'ha', 'hi', 'fu', 'he', 'ho', 'ma', 'mi', 'mu', 'me', 'mo', 'ya', '', 'yu', '', 'yo', 'ra', 'ri', 'ru', 're', 'ro', 'wa', '', '', '', 'wo', '', '', '', '', 'n', 'ga', 'gi', 'gu', 'ge', 'go', 'za', 'ji', 'zu', 'ze', 'zo', 'da', 'di', 'du', 'de', 'do', 'ba', 'bi', 'bu', 'be', 'bo', 'pa', 'pi', 'pu', 'pe', 'po'];
  
 const FIVE_CHARS = ['A', 'I', 'U', 'E', 'O'];
+const COL_ORDER = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'n', 'g', 'z', 'd', 'b', 'p'];
  
 var modal = document.getElementById("myModal");
  
@@ -23,6 +24,18 @@ let offsetY;
 let hira;
 let alt = false;
 let engl;
+
+let rng_set = [];
+let user_drawings = [];
+let num_elems_quiz;
+let rng_multi;
+let quiz = false;
+let current_question;
+let total_questions;
+let curr_array;
+let curr_index;
+let traversing_drawings;
+
  
 function load() {
     $(function() {
@@ -37,14 +50,15 @@ function load_helper(kana, array) {
     let num_cols = hiragana_chars.length / 5;
     let tab = document.getElementById(kana + '_tab');
     for (let i = num_cols - 1; i >= 0; i--) {
+        let current_index = i * 5;
         let new_col = document.createElement('div');
-        new_col.className = kana + '_col';
+        new_col.className = kana + '_col ';
         if (i > 10) {
             new_col.className += ' ' + kana + '_alt';
         }
         let top_letter = document.createElement('button');
+        top_letter.setAttribute('onclick', 'quiz_row("' + current_index + '", ' + 5 + ', ' + 5 + ')');
         top_letter.className = 'letter_buttons letter_' + kana;
-        let current_index = i * 5;
         if (i == 10) {
             top_letter.innerHTML = 'n';
         } else {
@@ -55,16 +69,22 @@ function load_helper(kana, array) {
             let new_button = document.createElement('button');
             let engl_div = document.createElement('div');
             engl_div.className = 'kana_english';
-            if (english_chars[current_index + j] == '') {
+            if (i == 10 && j == 0) {
+                new_button.className = 'kana_buttons';
+                new_button.id = kana + '_quiz';
+                new_button.setAttribute('onclick', 'quiz_row(' + 0 + ', ' + 71 + ', ' + 80 + ')');
+                new_button.innerHTML = 'TEST';
+                engl_div.innerHTML = 'ALL';
+            } else if (english_chars[current_index + j] == '') {
                 new_button.className = 'kana_buttons nope';
                 new_button.innerHTML = '&ZeroWidthSpace;';
                 engl_div.innerHTML = '&ZeroWidthSpace;';
             } else {
-                new_button.className = 'kana_buttons';
-                //TODO hardcode the gifs for the alts lmao
-                new_button.setAttribute('onclick', 'open_modal("' + array[current_index + j] + '")');
-                new_button.innerHTML = array[current_index + j];
-                engl_div.innerHTML = english_chars[current_index + j];
+                    new_button.className = 'kana_buttons';
+                    new_button.setAttribute('onclick', 'open_modal("' + array[current_index + j] + '")');
+                    new_button.innerHTML = array[current_index + j];
+                    engl_div.innerHTML = english_chars[current_index + j];
+
             }
             
             if ((i == 0 && j == 0) || (i == 11 && j == 0)) {
@@ -145,6 +165,79 @@ function color_switcher() {
     }
 
 }
+
+function quiz_row(row_index, num_elems, multiplier) {
+    let index = 0;
+    traversing_drawings = 0;
+    current_question = 1;
+    quiz = true;
+    if (hira) {
+        curr_array = hiragana_chars;
+    } else {
+        curr_array = katakana_chars;
+    }
+    curr_index = row_index;
+    num_elems_quiz = num_elems;
+    total_questions = num_elems;
+    if (row_index == 35) {
+        num_elems_quiz = 3;
+        total_questions = 3;
+    }else if (row_index == 45) {
+        num_elems_quiz = 2;
+        total_questions = 2;
+    } else if (row_index == 50) {
+        num_elems_quiz = 1;
+        total_questions = 1;
+    }
+    rng_multi = multiplier;
+    while (rng_set.length == 0) {
+        index = +curr_index + +Math.floor(Math.random() * rng_multi);
+        if (curr_array[index] != '') {
+            rng_set.push(index);
+        }
+    }
+    document.getElementById('arrow_right').style.display = 'block';
+    document.getElementById("myModal").style.backgroundImage = "url('images/background.jpg')";
+    document.getElementById("counter").innerHTML = "1 / " + total_questions;
+	document.getElementById("counter").style.display = "block";
+    document.getElementById("quiz_time").style.display = "block";
+    document.getElementById("quiz_time").innerHTML = "QUIZ TIME";
+    open_modal(curr_array[index]);
+}
+
+function go_right() {
+    if (rng_set.length == num_elems_quiz) {
+        if (traversing_drawings == 0) {
+            quiz = false;
+            document.getElementById("quiz_time").innerHTML = "";
+            user_drawings.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); 
+            show_result(traversing_drawings);
+        } else if (traversing_drawings == rng_set.length) {
+            quiz = true;
+            close_modal();
+        } else {
+            show_result(traversing_drawings);
+        }
+        traversing_drawings++;
+    } else {
+        user_drawings.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); 
+        let orig_size = rng_set.length;
+        while (orig_size == rng_set.length) {
+            index = +curr_index + +Math.floor(Math.random() * rng_multi);
+            if (curr_array[index] != '' && rng_set.indexOf(index) == -1) {
+                rng_set.push(index);
+            }
+        }
+        current_question++;
+        document.getElementById("counter").innerHTML = current_question + " / " + total_questions;
+        open_modal(curr_array[index]);
+    }
+}
+
+function show_result(index) {
+    open_modal(curr_array[rng_set[index]]);
+    ctx.putImageData(user_drawings[index], 0, 0);
+}
  
 function switch_to_alt() {
     let switch_button = document.getElementsByClassName('switch_button');
@@ -182,19 +275,32 @@ function switch_to_alt() {
  
 }
  
-function open_modal(kana, ) {
+function open_modal(kana) {
     if (hira) {
         engl = english_chars[hiragana_chars.indexOf(kana)];
-        document.getElementById("kanji_gif").setAttribute("src", "gifs/hiragana_gifs/" + engl + ".gif");
+        if (hiragana_chars.indexOf(kana) >= 55) {
+            // find_correct_gif(kana);
+        } else {
+            document.getElementById("kanji_gif").setAttribute("src", "gifs/hiragana_gifs/" + engl + ".gif");
+        }
         document.getElementById("display_english").innerHTML = engl;
     } else {
         engl = english_chars[katakana_chars.indexOf(kana)];
-        document.getElementById("kanji_gif").setAttribute("src", "gifs/katakana_gifs/" + engl + ".gif");
+        if (katakana_chars.indexOf(kana) >= 55) {
+            // find_correct_gif(kana);
+        } else {
+            document.getElementById("kanji_gif").setAttribute("src", "gifs/katakana_gifs/" + engl + ".gif");
+        }
         document.getElementById("display_english").innerHTML = engl;
     }
-    document.getElementById("kanji_gif").style.display = "block";
+    if (quiz) {
+        document.getElementById("kanji_gif").style.display = "none";
+        document.getElementById("display_kanji").innerHTML = "";
+    } else {
+        document.getElementById("kanji_gif").style.display = "block";
+        document.getElementById("display_kanji").innerHTML = kana;
+    }
     document.getElementById("line_width").value = lineWidth;
-    document.getElementById("display_kanji").innerHTML = kana;
     document.body.style.overflow = "hidden";
     modal.style.display = "block";
  
@@ -206,6 +312,15 @@ function open_modal(kana, ) {
 }
  
 function close_modal() {
+    if (quiz) {
+        document.getElementById('arrow_right').style.display = 'none';
+        document.getElementById("myModal").style.backgroundImage = "none";
+        document.getElementById("counter").style.display = "none";
+        document.getElementById("quiz_time").style.display = "none";
+        user_drawings.splice(0, user_drawings.length);
+        rng_set.splice(0, rng_set.length);
+        quiz = false;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawing_stack.splice(0, drawing_stack.length);
     isPainting = false;
@@ -268,6 +383,10 @@ window.addEventListener("keydown", e => {
             clear_drawing();
         } else if (e.code == "KeyZ") {
             undo();
+        } else if (modal.style.display == 'block') {
+            if (e.key == "ArrowRight" && document.getElementById('arrow_right').style.display == 'block') {
+                go_right();
+            }
         }
 }
 });
