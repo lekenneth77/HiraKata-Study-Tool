@@ -144,6 +144,11 @@ function openTab(evt, tabName) {
     }
     evt.target.className += " active";
     hira = tabName == 'hira_tab';
+    if (hira) {
+        curr_array = hiragana_chars;
+    } else {
+        curr_array = katakana_chars;
+    }
     color_switcher();
 }
 
@@ -171,11 +176,6 @@ function quiz_row(row_index, num_elems, multiplier) {
     traversing_drawings = 0;
     current_question = 1;
     quiz = true;
-    if (hira) {
-        curr_array = hiragana_chars;
-    } else {
-        curr_array = katakana_chars;
-    }
     curr_index = row_index;
     num_elems_quiz = num_elems;
     total_questions = num_elems;
@@ -207,6 +207,7 @@ function quiz_row(row_index, num_elems, multiplier) {
 
 function go_right() {
     if (rng_set.length == num_elems_quiz) {
+        document.getElementById("counter").innerHTML = traversing_drawings + 1 + " / " + total_questions;
         if (traversing_drawings == 0) {
             quiz = false;
             document.getElementById("quiz_time").innerHTML = "";
@@ -279,7 +280,7 @@ function open_modal(kana) {
     if (hira) {
         engl = english_chars[hiragana_chars.indexOf(kana)];
         if (hiragana_chars.indexOf(kana) >= 55) {
-            // find_correct_gif(kana);
+            find_correct_gif(kana);
         } else {
             document.getElementById("kanji_gif").setAttribute("src", "gifs/hiragana_gifs/" + engl + ".gif");
         }
@@ -287,7 +288,7 @@ function open_modal(kana) {
     } else {
         engl = english_chars[katakana_chars.indexOf(kana)];
         if (katakana_chars.indexOf(kana) >= 55) {
-            // find_correct_gif(kana);
+            find_correct_gif(kana);
         } else {
             document.getElementById("kanji_gif").setAttribute("src", "gifs/katakana_gifs/" + engl + ".gif");
         }
@@ -310,6 +311,29 @@ function open_modal(kana) {
     canvas.width = window.innerWidth * (.8);
     canvas.height = window.innerHeight * (.69);
 }
+
+function find_correct_gif(kana) {
+    let result;
+    let index = curr_array.indexOf(kana);
+    if (index >= 75) {
+        result = english_chars[25 + +(index % 75)];
+    } else if (index >= 70) {
+        result = english_chars[25 + +(index % 70)];
+    } else if (index >= 65) {
+        result = english_chars[15 + +(index % 65)];
+    } else if (index >= 60) {
+        result = english_chars[10 + +(index % 60)];
+    } else if (index >= 55) {
+        result = english_chars[5 + +(index % 55)];
+    }
+
+    if (hira) {
+        document.getElementById("kanji_gif").setAttribute("src", "gifs/hiragana_gifs/" + result + ".gif");
+    } else {
+        document.getElementById("kanji_gif").setAttribute("src", "gifs/katakana_gifs/" + result + ".gif");
+    }
+}
+
  
 function close_modal() {
     if (quiz) {
