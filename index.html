@@ -10,6 +10,10 @@
     </head>
     <body onload = "load()">
         <img id = "main_title" src = "images/tako.png" alt = "TITLE" onclick = "openTab(event, 'front_page')">
+        <div class = "tab other_tab">
+            <button class = "tablinks other" onclick = "openTab(event, 'help')">Help</button>
+            <button class = "tablinks other" onclick = "openTab(event, 'about')">About</button>
+        </div>
         <div class = "tab">
             <button class = "tablinks" onclick = "openTab(event, 'hira_tab')">Hiragana</button>
             <button class = "tablinks" onclick = "openTab(event, 'kata_tab')">Katakana</button>
@@ -24,14 +28,93 @@
             <div id = "hira_tab" class = "tabcontent"></div>
             <div id = "kata_tab" class = "tabcontent"></div>
 
+            <div id = "help" class = "tabcontent">
+                <span class = "help_buttons help_arrow" id = "howto_arrow">&#8680;</span>
+                <button class = "help_buttons" onclick="display_help('help_howto', this, 'howto_arrow')">How To</button>
+                <div class = "help_content" id = "help_howto">
+                    <p style="text-decoration: underline; font-style: italic;">Navigation</p>
+                    <p>Click on the tab to choose the corresponding kana you would like to study.</p>
+                    <p>Inside of the tab, you will find the table of kana To study a specific kana, click on it.</p>
+                    <p>Once you have clicked on it, a scroll will pop up, allowing you to draw on it and follow
+                        the tracing lines.
+                    </p>
+                    <p style="text-decoration: underline; font-style: italic;">Alternate Kana</p>
+                    <p>To study the alternate kana's, for example like が and だ.</p>
+                    <p>Click on the が or ガ button on the top right of the table.</p>
+                    <p>This will transition the table into the alternate kana mode.</p>
+                    <p>This alternate table functions exactly like the regular one.</p>
+                    <p style="text-decoration: underline; font-style: italic;">Inside of the Page</p>
+                    <p>Click on the undo button if you made a mistake and want to undo a line.</p>
+                    <p>Click on the clear button if you would like to erase your writing.</p>
+                    <p>Finally, once you are done, you can click on the "X" in the top right corner of the scroll to exit out of
+                        the page.
+                    </p>
+                    <p style="text-decoration: underline; font-style: italic;">Quizzing</p>
+                    <p>There are multiple ways to quiz.</p>
+                    <p>If you would like to quiz on a specific column of kana, then click on the english letter corresponding to that column which is on top.</p>
+                    <p>(WIP) If you would like to quiz on a specific row of kana, then click on the english letter corresponding to that row which is on the right.</p>
+                    <p>Finally, if you would like to quiz all of the hiragana or katakana, then click on the quiz all button,
+                        located on the top left.</p>
+                    <p>If you have used the kanji site, then you would have noticed that quizzing here is different.</p>
+                    <p>When you quiz, you are only shown the correct answer when the quiz is finished.</p>
+                    <p>Your drawing and the correct drawing will be shown on top of each other so you can check your work.</p>
+                </div>
+                
+                <div></div>
+                <span class = "help_buttons help_arrow" id = "short_cut_arrow">&#8680;</span>
+                <button class = "help_buttons" onclick="display_help('help_shortcut', this, 'short_cut_arrow')">Shortcuts</button>
+                <ul class = "help_content" id = "help_shortcut">
+                    <li>
+                        <span class = "shortcuts">Right Arrow Keys</span>
+                        <span>Go to Next Question</span>
+                    </li>
+                    <li>
+                        <span class = "shortcuts">Esc Key</span>
+                        <span>Exit Page</span>
+                    </li>
+                    <li>
+                        <span class = "shortcuts">C Key or Backspace</span>
+                        <span>Clear Page</span>
+                    </li>
+                    <li>
+                        <span class = "shortcuts">Z Key</span>
+                        <span>Undo</span>
+                    </li>
+                    
+                </ul>
+
+            </div>
+
+            <div id = "about" class = "tabcontent">
+                <p style="display:inline">Hello Again! </p>
+                <img src="images/octopus.PNG" alt="octopus" id = "octo_img">
+                <p id = "octo_hello">Hello!</p>
+                <p>This website was developed by Kenneth Le. At the time of this website's creation, I'm a sophomore at
+                    UT Austin taking 610D Japanese. I made this website to assist
+                    students learning Japanese. Hiragana and Katakana are the core basics of Japanese! You will need
+                    to be able to recognize what it means and sounds like immediately! I hope this website will
+                    help you learn!
+                </p>
+                <img src="images/me.jpg" alt="me" id = "me_img">
+                <p>If you run into any bugs, or if you have any suggestions about anything I should
+                    add to the website then please email me! Any sort of feedback would be great, if you think that adding some
+                    functions would help convenience or help the learning process, then please, email me.
+                    My email is lekenneth77@gmail.com
+                </p>
+                <p></p>
+                <p>Special thanks to Cooke-Sensei, Suito-Sensei, the rest of the UT Japanese Department, and you!</p>
+                <p id = "me_thanks">ありがとう！</p>
+                <br>
+                <p style = "font-weight: bolder; text-align: center;">がんばって！！！</p>
+                <img src="images/milo.jpg" alt="dog" id = "milo_img">
+            </div>
+
             <div id="myModal" class="modal">
                 <h1 id = "quiz_time">QUIZ TIME</h1>
                 <img src="gifs/tinytrans.gif" id = "kanji_gif" alt="gif">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <!-- <button id ="check" onclick = "show_correct()">CHECK</button> -->
                     <p id = "counter">24 / 24</p>
-                    <!-- <button id = "left" class = "arrow left" onclick = "go_left()"></button> -->
                     <button id = "arrow_right" onclick = "go_right()"></button>
                     <!--Drawing_Board-->
                     <div id = "toolbar">
@@ -47,14 +130,11 @@
                         <button id="close" onclick = "close_modal()">X</button>
                     </div>
                     <h2 id = "display_kanji"></h2>
-                    <!-- <p id = "display_underline"></p> -->
                     <div id="board_space">
                         <canvas id="drawing_board"></canvas>
                     </div>
                  </div>
             </div>
-            
-            
             <script src = "hirakata_script.js"></script>
         </div>
     <p id = "last_updated"></p>

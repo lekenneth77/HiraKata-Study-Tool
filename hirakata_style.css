@@ -25,8 +25,11 @@ body {
     flex-direction: row;
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 3%;
     position: relative;
+}
+
+.other_tab {
+  justify-content: end;
 }
 
 .tablinks {
@@ -60,6 +63,115 @@ body {
     flex-direction: row;
     justify-content: center;
   }
+
+  .other {
+    flex-basis:15%;
+    margin-top: 3%;
+    border-style: solid;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    border-color: black;
+    border-width: .1vw;
+  }
+
+  ul {
+    list-style-type: circle;
+}
+
+.help_buttons {
+    background: none;
+    border: none;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-size: 2vw;
+    margin-bottom: 0%;
+    height: 4%;
+    cursor: pointer;
+}
+
+.help_buttons:hover {
+    text-decoration: underline;
+}
+
+.help_arrow {
+    margin-left: 2%;
+}
+
+
+.help_arrow:hover {
+    text-decoration: none;
+}
+
+  .help_content {
+    display: none;
+    user-select: none;
+}
+
+#help_howto {
+    margin-left: 2%;
+}
+
+.shortcuts {
+    font-weight: bolder;
+}
+
+span + span {
+    float: right;
+    font-style: italic;
+}
+
+#help {
+    width: 95%;
+    border: none;
+    font-size: 1.5vw;
+}
+
+  #about {
+    font-size: 1.5vw;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+#octo_img {
+  width: 14vw;
+  height: 14vw;
+  display: block;
+  float: right;
+  margin-top: 1vw;
+  margin-right: .5vw;
+  border-style: solid;
+}
+
+#octo_hello {
+  position: absolute;
+  right: 8%;
+  top: 42%;
+  color: white;
+}
+
+#me_img {
+  width: 10vw;
+  height: 15vw;
+  float: left;
+  margin-right: 1vw;
+  border-style: solid;
+}
+
+#me_thanks {
+  position: absolute;
+  left: 8.5%;
+  top: 68%;
+  color: white;
+  transform: rotate(20deg);
+}
+
+#milo_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  height: 18vw;
+  width: 30vw;
+  margin-bottom: 1vw;
+}
 
   .hira_col {
         display: flex;
@@ -293,6 +405,7 @@ body {
 
 .sound {
     background-color: transparent;
+    outline: none;
 }
 
 
