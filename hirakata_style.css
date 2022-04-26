@@ -57,7 +57,6 @@ body {
   /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
     flex-direction: row;
@@ -173,12 +172,16 @@ span + span {
   margin-bottom: 1vw;
 }
 
-  .hira_col {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 8%;
-        margin-bottom: 2.5%;
-  }
+#hira_tab {
+  border: none;
+}
+
+.hira_col {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 7vw;
+  margin-bottom: 2.5%;
+}
 
   .hira_alt {
       display: none;
@@ -187,7 +190,7 @@ span + span {
   .kata_col {
         display: flex;
         flex-direction: column;
-        flex-basis: 8%;
+        flex-basis: 7vw;
         margin-bottom: 2.5%;
   }
 
@@ -204,6 +207,7 @@ span + span {
     cursor: pointer;
     border-style: none none solid solid;
     outline: none;
+    border-width: .2vw;
   }
 
   .kana_buttons:hover {
@@ -218,6 +222,7 @@ span + span {
       background-color: rgb(214, 82, 82);
       font-size: 2vw;
       font-weight: bold;
+      border-width: .3vw;
   }
 
   #hira_quiz:hover {
@@ -228,6 +233,7 @@ span + span {
     background-color: rgb(112, 112, 218);
     font-size: 2vw;
     font-weight: bold;
+    border-width: .3vw;
   }
 
   #kata_quiz:hover {
@@ -240,6 +246,7 @@ span + span {
       font-size: 2vw;
       user-select: none;
       border-color: black;
+      border-width: .3vw;
   }
 
   .nope {
@@ -274,7 +281,6 @@ span + span {
     border: none;
     font-family: "UDDigiKyokashoN-R", arial, serif;
     font-size: 2vw;
-    /* margin-top: 1vw; */
     align-self: center;
     cursor: pointer;
   }
@@ -301,12 +307,12 @@ span + span {
     background-color: white;
     color: black;
     border-style: solid;
-    border-width: 2px;
+    border-width: .2vw;
     border-color: black;
     margin-left: 5%;
     margin-right: 5%;
     width: 90%;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #last_updated { 

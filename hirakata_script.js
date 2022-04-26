@@ -349,16 +349,15 @@ function find_correct_gif(kana) {
 
  
 function close_modal() {
-    if (quiz) {
-        document.getElementById('arrow_right').style.display = 'none';
-        document.getElementById("myModal").style.backgroundImage = "none";
-        document.getElementById("counter").style.display = "none";
-        document.getElementById("quiz_time").style.display = "none";
-        user_drawings.splice(0, user_drawings.length);
-        rng_set.splice(0, rng_set.length);
-        quiz = false;
-        row = false;
-    }
+    document.getElementById('arrow_right').style.display = 'none';
+    document.getElementById("myModal").style.backgroundImage = "none";
+    document.getElementById("counter").style.display = "none";
+    document.getElementById("quiz_time").style.display = "none";
+    user_drawings.splice(0, user_drawings.length);
+    traversing_drawings = 0;
+    rng_set.splice(0, rng_set.length);
+    quiz = false;
+    row = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawing_stack.splice(0, drawing_stack.length);
     isPainting = false;
