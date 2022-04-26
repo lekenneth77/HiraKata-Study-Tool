@@ -30,6 +30,7 @@ let user_drawings = [];
 let num_elems_quiz;
 let rng_multi;
 let quiz = false;
+let col_multiplier;
 let current_question;
 let total_questions;
 let curr_array;
@@ -57,7 +58,7 @@ function load_helper(kana, array) {
             new_col.className += ' ' + kana + '_alt';
         }
         let top_letter = document.createElement('button');
-        top_letter.setAttribute('onclick', 'quiz_row("' + current_index + '", ' + 5 + ', ' + 5 + ')');
+        top_letter.setAttribute('onclick', 'quiz_row("' + current_index + '", ' + 5 + ', ' + 5 +  ', ' + 1 + ')');
         top_letter.className = 'letter_buttons letter_' + kana;
         if (i == 10) {
             top_letter.innerHTML = 'n';
@@ -72,7 +73,7 @@ function load_helper(kana, array) {
             if (i == 10 && j == 0) {
                 new_button.className = 'kana_buttons';
                 new_button.id = kana + '_quiz';
-                new_button.setAttribute('onclick', 'quiz_row(' + 0 + ', ' + 71 + ', ' + 80 + ')');
+                new_button.setAttribute('onclick', 'quiz_row(' + 0 + ', ' + 71 + ', ' + 80 + ', ' + 1 + ')');
                 new_button.innerHTML = 'TEST';
                 engl_div.innerHTML = 'ALL';
             } else if (english_chars[current_index + j] == '') {
@@ -114,10 +115,11 @@ function load_helper(kana, array) {
 
     for (let i = 0; i < 5; i++) {
         let new_button = document.createElement('button');
-        new_button.className = 'kana_buttons letter_' + kana + ' nope';
+        new_button.className = 'kana_buttons letter_' + kana;
+        new_button.setAttribute('onclick', 'quiz_row(' + i + ', ' + 16 + ', ' + 16 + ', ' + 5 + ')');
         new_button.innerHTML = FIVE_CHARS[i];
         let engl_div = document.createElement('div');
-        engl_div.className = 'kana_english nope';
+        engl_div.className = 'kana_english';
         engl_div.innerHTML = '&ZeroWidthSpace;';
         new_button.append(engl_div);
         new_col.append(new_button);
@@ -161,41 +163,52 @@ function color_switcher() {
             toolbar_buttons[i].style.backgroundColor = 'red';
         }
         document.getElementById('line_width_box').style.backgroundColor = 'red';
+        document.getElementById("quiz_time").style.color = "red";
+
     } else {
         modal_content[0].style.backgroundImage = "url('images/katascroll.png')"
         for (let i = 0; i < toolbar_buttons.length - 1; i++) {
             toolbar_buttons[i].style.backgroundColor = 'blue';
         }
         document.getElementById('line_width_box').style.backgroundColor = 'blue';
+        document.getElementById("quiz_time").style.color = "blue";
     }
-
 }
 
-function quiz_row(row_index, num_elems, multiplier) {
+function quiz_row(row_index, num_elems, multiplier, col_multi) {
     let index = 0;
     traversing_drawings = 0;
     current_question = 1;
     quiz = true;
     curr_index = row_index;
     num_elems_quiz = num_elems;
-    total_questions = num_elems;
-    if (row_index == 35) {
-        num_elems_quiz = 3;
-        total_questions = 3;
-    }else if (row_index == 45) {
-        num_elems_quiz = 2;
-        total_questions = 2;
-    } else if (row_index == 50) {
-        num_elems_quiz = 1;
-        total_questions = 1;
+    if (col_multi == 1) {
+        if (row_index == 35) {
+            num_elems_quiz = 3;
+        } else if (row_index == 45) {
+            num_elems_quiz = 2;
+        } else if (row_index == 50) {
+            num_elems_quiz = 1;
+        }
+    } else {
+        if (row_index == 0) {
+            num_elems_quiz = num_elems - 1;
+        } else if (row_index == 1 || row_index == 3) {
+            num_elems_quiz = num_elems - 3;
+        } else if (row_index == 2) {
+            num_elems_quiz = num_elems - 2;
+        }
     }
+    total_questions = num_elems_quiz;
     rng_multi = multiplier;
+    col_multiplier = col_multi;
     while (rng_set.length == 0) {
-        index = +curr_index + +Math.floor(Math.random() * rng_multi);
+        index = +curr_index + (+Math.floor(Math.random() * rng_multi) * col_multiplier);
         if (curr_array[index] != '') {
             rng_set.push(index);
         }
     }
+
     document.getElementById('arrow_right').style.display = 'block';
     document.getElementById("myModal").style.backgroundImage = "url('images/background.jpg')";
     document.getElementById("counter").innerHTML = "1 / " + total_questions;
@@ -224,7 +237,7 @@ function go_right() {
         user_drawings.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); 
         let orig_size = rng_set.length;
         while (orig_size == rng_set.length) {
-            index = +curr_index + +Math.floor(Math.random() * rng_multi);
+            index = +curr_index + (+Math.floor(Math.random() * rng_multi) * col_multiplier);
             if (curr_array[index] != '' && rng_set.indexOf(index) == -1) {
                 rng_set.push(index);
             }
@@ -344,6 +357,7 @@ function close_modal() {
         user_drawings.splice(0, user_drawings.length);
         rng_set.splice(0, rng_set.length);
         quiz = false;
+        row = false;
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawing_stack.splice(0, drawing_stack.length);
