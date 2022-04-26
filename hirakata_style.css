@@ -176,7 +176,8 @@ span + span {
   .hira_col {
         display: flex;
         flex-direction: column;
-        flex-basis: 9%;
+        flex-basis: 8%;
+        margin-bottom: 2.5%;
   }
 
   .hira_alt {
@@ -186,7 +187,8 @@ span + span {
   .kata_col {
         display: flex;
         flex-direction: column;
-        flex-basis: 9%;
+        flex-basis: 8%;
+        margin-bottom: 2.5%;
   }
 
   .kata_alt {
