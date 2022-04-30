@@ -1,6 +1,8 @@
 body {
     background-image: url("images/background.jpg");
     overflow: auto;
+    margin: 0;
+    padding: 0;
 }
 
 @font-face {
@@ -41,6 +43,8 @@ body {
     font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     font-size: 2.5vw;
     cursor: pointer;
+    border-width: .2vw;
+
     
 }
 
@@ -179,7 +183,7 @@ span + span {
 .hira_col {
   display: flex;
   flex-direction: column;
-  flex-basis: 7vw;
+  flex-basis: 8%;
   margin-bottom: 2.5%;
 }
 
@@ -198,9 +202,11 @@ span + span {
       display: none;
   }
 
+ 
+
   .kana_buttons {
     font-family: "UDDigiKyokashoN-R", arial, serif;
-    font-size: 4vw;
+    font-size: 2vw;
     height: 100%;
     background-color: white;
     border-color: black;
@@ -209,6 +215,20 @@ span + span {
     outline: none;
     border-width: .2vw;
   }
+
+  @media (min-width:700px){
+    .kana_buttons {
+      font-family: "UDDigiKyokashoN-R", arial, serif;
+      font-size: 4vw;
+      height: 100%;
+      background-color: white;
+      border-color: black;
+      cursor: pointer;
+      border-style: none none solid solid;
+      outline: none;
+      border-width: .2vw;
+    }
+}
 
   .kana_buttons:hover {
     background-color: #ddd;
@@ -242,7 +262,7 @@ span + span {
   }
 
   .kana_english {
-      text-align: center;
+      /* text-align: center; */
       font-size: 2vw;
       user-select: none;
       border-color: black;
@@ -317,6 +337,7 @@ span + span {
 
 #last_updated { 
     float: right;
+    font-size: 2vw;
 }
 
 #front_page {
@@ -414,6 +435,9 @@ span + span {
 .sound {
     background-color: transparent;
     outline: none;
+    height: 3vw;
+    width: 4vw;
+    /* weight: 2vw; */
 }
 
 
