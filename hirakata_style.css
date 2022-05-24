@@ -206,7 +206,7 @@ span + span {
 
   .kana_buttons {
     font-family: "UDDigiKyokashoN-R", arial, serif;
-    font-size: 2vw;
+    font-size: 1.5vw;
     height: 100%;
     background-color: white;
     border-color: black;
@@ -216,7 +216,39 @@ span + span {
     border-width: .2vw;
   }
 
-  @media (min-width:700px){
+  #hira_quiz {
+    font-family: "UDDigiKyokashoN-R", arial, serif;
+    background-color: rgb(214, 82, 82);
+    font-size: 1.5vw;
+    font-weight: bold;
+    border-width: .3vw;
+}
+
+#hira_quiz:hover {
+  background-color: rgb(207, 38, 38);
+}
+
+#kata_quiz {
+  background-color: rgb(112, 112, 218);
+  font-size: 1.5vw;
+  font-weight: bold;
+  border-width: .3vw;
+}
+
+#kata_quiz:hover {
+  background-color: rgb(69, 69, 249);
+    
+}
+
+.kana_english {
+    /* text-align: center; */
+    font-size: 1.5vw;
+    user-select: none;
+    border-color: black;
+    border-width: .3vw;
+}
+
+  @media (min-width:820px){
     .kana_buttons {
       font-family: "UDDigiKyokashoN-R", arial, serif;
       font-size: 4vw;
@@ -228,6 +260,20 @@ span + span {
       outline: none;
       border-width: .2vw;
     }
+
+    #hira_quiz {
+      font-size: 2vw;
+  }
+
+  #kata_quiz {
+    font-size: 2vw;
+  }
+
+  .kana_english {
+    font-size: 2vw;    
+}
+
+
 }
 
   .kana_buttons:hover {
@@ -238,36 +284,7 @@ span + span {
     background-color: rgb(220, 220, 220);
   }
 
-  #hira_quiz {
-      background-color: rgb(214, 82, 82);
-      font-size: 2vw;
-      font-weight: bold;
-      border-width: .3vw;
-  }
 
-  #hira_quiz:hover {
-    background-color: rgb(207, 38, 38);
-  }
-
-  #kata_quiz {
-    background-color: rgb(112, 112, 218);
-    font-size: 2vw;
-    font-weight: bold;
-    border-width: .3vw;
-  }
-
-  #kata_quiz:hover {
-    background-color: rgb(69, 69, 249);
-      
-  }
-
-  .kana_english {
-      /* text-align: center; */
-      font-size: 2vw;
-      user-select: none;
-      border-color: black;
-      border-width: .3vw;
-  }
 
   .nope {
       cursor: auto;
