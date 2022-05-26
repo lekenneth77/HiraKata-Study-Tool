@@ -202,12 +202,11 @@ span + span {
       display: none;
   }
 
- 
-
   .kana_buttons {
     font-family: "UDDigiKyokashoN-R", arial, serif;
     font-size: 1.5vw;
-    height: 100%;
+    height: 4vw;
+    width: 7.2vw;
     background-color: white;
     border-color: black;
     cursor: pointer;
@@ -252,7 +251,8 @@ span + span {
     .kana_buttons {
       font-family: "UDDigiKyokashoN-R", arial, serif;
       font-size: 4vw;
-      height: 100%;
+      height: 7.2vw;
+      width: 7.2vw;
       background-color: white;
       border-color: black;
       cursor: pointer;
