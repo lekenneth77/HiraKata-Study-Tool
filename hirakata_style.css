@@ -15,10 +15,11 @@ body {
 #main_title {
     margin-left: 5%;
     width: 40%;
-    height: 15%;
+    height: 8vw;
     border-style: solid;
     cursor: pointer;
     user-select: none;
+    border-width: .2vw;
 }
 
 .tab {
@@ -213,6 +214,7 @@ span + span {
     border-style: none none solid solid;
     outline: none;
     border-width: .2vw;
+    color: black;
   }
 
   #hira_quiz {
