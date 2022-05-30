@@ -249,7 +249,7 @@ span + span {
     border-width: .3vw;
 }
 
-  @media (min-width:820px){
+  @media (min-width:1025px){
     .kana_buttons {
       font-family: "UDDigiKyokashoN-R", arial, serif;
       font-size: 4vw;
@@ -538,6 +538,21 @@ input[type=number]::-webkit-outer-spin-button {
     border-right: transparent;
     background: none;
     display: none;
+}
+
+#arrow_result {
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  position: absolute;
+  z-index: 3;
+  top: 41%;
+  right: 2%;
+  font-size: 1.3vw;
+  background-color: white;
+  color: black;
+  border-style: solid;
+  border-width: .2vw;
+  display: none;
+  cursor: pointer;
 }
 
 #counter {

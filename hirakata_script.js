@@ -219,6 +219,7 @@ function quiz_row(row_index, num_elems, multiplier, col_multi) {
 }
 
 function go_right() {
+    
     if (rng_set.length == num_elems_quiz) {
         document.getElementById("counter").innerHTML = traversing_drawings + 1 + " / " + total_questions;
         if (traversing_drawings == 0) {
@@ -234,6 +235,9 @@ function go_right() {
         }
         traversing_drawings++;
     } else {
+        if (rng_set.length == num_elems_quiz - 1) {
+            document.getElementById("arrow_result").style.display = "block";
+        }
         user_drawings.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); 
         let orig_size = rng_set.length;
         while (orig_size == rng_set.length) {
@@ -350,6 +354,7 @@ function find_correct_gif(kana) {
  
 function close_modal() {
     document.getElementById('arrow_right').style.display = 'none';
+    document.getElementById("arrow_result").style.display = "none";
     document.getElementById("myModal").style.backgroundImage = "none";
     document.getElementById("counter").style.display = "none";
     document.getElementById("quiz_time").style.display = "none";
