@@ -278,17 +278,25 @@ function switch_to_alt() {
         for (let i = 5; i < original_cols.length; i++) {
             original_cols[i].style.display = 'flex';
         }
- 
+        if (hira) {
+            switch_button[switch_index].innerHTML = "が"
+        } else {
+            switch_button[switch_index].innerHTML = "ガ"
+        }
     } else {
         alt = true;
-        switch_button[switch_index].className += " active";
         for (let i = 5; i < original_cols.length - 1; i++) {
             original_cols[i].style.display = 'none';
         }
         for (let i = 0; i < alts.length; i++) {
             alts[i].style.display = 'flex';
         }
- 
+        
+        if (hira) {
+            switch_button[switch_index].innerHTML = "か"
+        } else {
+            switch_button[switch_index].innerHTML = "カ"
+        }
     }
  
 }

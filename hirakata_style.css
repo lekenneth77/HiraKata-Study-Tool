@@ -220,11 +220,12 @@ span + span {
   }
 
   #hira_quiz {
+    padding: 0;
     font-family: "UDDigiKyokashoN-R", arial, serif;
     background-color: rgb(214, 82, 82);
     font-size: 2vw;
     font-weight: bold;
-    border-width: .3vw;
+    border-width: .2vw;
 }
 
 #hira_quiz:hover {
@@ -232,10 +233,11 @@ span + span {
 }
 
 #kata_quiz {
+  padding: 0;
   background-color: rgb(112, 112, 218);
   font-size: 2vw;
   font-weight: bold;
-  border-width: .3vw;
+  border-width: .2vw;
 }
 
 #kata_quiz:hover {
@@ -244,11 +246,11 @@ span + span {
 }
 
 .kana_english {
-    /* text-align: center; */
+    padding: 0;
     font-size: 2vw;
     user-select: none;
     border-color: black;
-    border-width: .3vw;
+    border-width: .2vw;
 }
 
   /* @media (min-width:1264px){
@@ -324,6 +326,7 @@ span + span {
     font-size: 2vw;
     align-self: center;
     cursor: pointer;
+    color: black;
   }
 
   .switch_button:hover {
