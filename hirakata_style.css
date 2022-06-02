@@ -205,8 +205,8 @@ span + span {
 
   .kana_buttons {
     font-family: "UDDigiKyokashoN-R", arial, serif;
-    font-size: 1.5vw;
-    height: 4vw;
+    font-size: 3vw;
+    height: 6vw;
     width: 7.2vw;
     background-color: white;
     border-color: black;
@@ -261,7 +261,6 @@ span + span {
       border-style: none none solid solid;
       outline: none;
       border-width: .2vw;
-      color: green;
     }
 
     #hira_quiz {
