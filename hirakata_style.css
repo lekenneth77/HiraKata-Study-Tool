@@ -249,7 +249,7 @@ span + span {
     border-width: .3vw;
 }
 
-  @media (min-width:1250px){
+  @media (min-width:1300px){
     .kana_buttons {
       font-family: "UDDigiKyokashoN-R", arial, serif;
       font-size: 4vw;
